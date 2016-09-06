@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Injectable } 		from '@angular/core';
+import { Headers, Http, Response } 	from '@angular/http';
+import { Observable } 		from 'rxjs';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -13,6 +14,12 @@ export class HeroService {
 	private heroesUrl = 'app/heroes'; // URL to web api
 
 	constructor(private http: Http) {}
+
+	search(term: string): Observable<Hero[]> {
+		return this.http
+					.get(`app/heroes/?name=${term}`)
+					.map((r: Response) => r.json().data as Hero[]);
+	}
 
 	create(name: string): Promise<Hero> {
 		return this.http
