@@ -16,6 +16,7 @@ import { Hero } from './hero';
 	    </div>
 			<button (click)="goBack()">Back</button>
 	  </div>
+		<button (click)="save()">Save</button>
 	`,
 	styleUrls: [ 'app/hero-detail.component.css']
 
@@ -32,6 +33,10 @@ export class HeroDetailComponent implements OnInit {
 			this.heroService.getHero(id)
 				.then(hero => this.hero = hero);
 		});
+	}
+
+	save(): void {
+		this.heroService.update(this.hero).then(this.goBack);
 	}
 
 	goBack(): void {
