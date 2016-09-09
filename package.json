@@ -7,7 +7,9 @@
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "typings": "typings"
+    "typings": "typings",
+    "lite-server-test": "lite-server --config=liteserver-test-config.json",
+    "test": "tsc && concurrently \"npm run tsc:w\" \"npm run lite-server-test\" "
   },
   "license": "ISC",
   "dependencies": {
@@ -31,9 +33,9 @@
   },
   "devDependencies": {
     "concurrently": "^2.2.0",
+    "jasmine-core": "2.5.1",
     "lite-server": "^2.2.2",
     "typescript": "^2.0.2",
-    "typings":"^1.3.2"
+    "typings": "^1.3.2"
   }
 }
-
